@@ -15,19 +15,15 @@ const StyledSecondaryButton = styled.button`
 export const SecondaryButton = ({ to, children }) => {
   return (
     <Link to={to}>
-      <StyledSecondaryButton>
-        {children}
-      </StyledSecondaryButton>
+      <StyledSecondaryButton>{children}</StyledSecondaryButton>
     </Link>
-  )
-}
+  );
+};
 
 export const PrimaryButton = ({ to, children }) => {
   return (
     <Link to={to}>
-      <StyledPrimaryButton>
-        {children}
-      </StyledPrimaryButton>
+      <StyledPrimaryButton>{children}</StyledPrimaryButton>
     </Link>
   );
 };
