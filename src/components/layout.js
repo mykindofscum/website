@@ -4,12 +4,13 @@ import { StaticQuery, graphql } from "gatsby";
 import Header from "./Header";
 import styled from "styled-components";
 import Footer from "../components/Footer";
+import "../styles/typography.scss";
 
 const Container = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 16px repeat(4, 1fr) 16px;
-  grid-template-rows: 60px auto auto;
+  grid-template-rows: 85px auto auto;
   min-height: 100vh;
   grid-template-areas:
     "hd  hd   hd   hd   hd   hd"
@@ -22,19 +23,34 @@ const Container = styled.div`
       "... main main main main main main main main main main main main ..."
       "ft  ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft   ft";
   }
+  * {
+    box-sizing: border-box;
+  }
   header {
     grid-area: hd;
   }
-  main {
-    grid-area: main;
-  }
   footer {
+    margin-top: 2rem;
     grid-area: ft;
+  }
+  main {
+    min-height: calc(100vh - 85px);
+    max-width: 100%;
+    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .inline-grid {
     display: inline-grid;
     grid-template-columns: inherit;
     column-gap: inherit;
+  }
+  ul {
+    &.cities {
+      margin-left: 0;
+    }
   }
 `;
 
@@ -52,20 +68,13 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <Container>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <main
-          style={{
-            margin: "0 auto",
-            maxWidth: 960,
-            padding: "0px 1.0875rem 1.45rem",
-            paddingTop: 0
-          }}
-        >
-          {children}
-        </main>
-        <Footer></Footer>
-      </Container>
+      <>
+        <Container>
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <main>{children}</main>
+          <Footer></Footer>
+        </Container>
+      </>
     )}
   />
 );
